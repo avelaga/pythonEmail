@@ -5,12 +5,15 @@ import myconfig
 
 def send_email(subject, msg):
     try:
+        print("starting try")
         server = smtplib.SMTP('smtp.gmail.com:587')
         server.ehlo()
         server.starttls()
-        server.login(config.EMAIL_ADDRESS, config.PASSWORD)
+        print("about to login")
+        server.login(myconfig.EMAIL_ADDRESS, myconfig.PASSWORD)
         message = 'Subject: {}\n\n{}'.format(subject, msg)
-        server.sendmail(config.EMAIL_ADDRESS, config.RECIPIENT_ADDRESS, message)
+        print("about to send email")
+        server.sendmail(myconfig.EMAIL_ADDRESS, myconfig.RECIPIENT_ADDRESS, message)
         server.quit()
         print("Success: Email sent!")
     except:
